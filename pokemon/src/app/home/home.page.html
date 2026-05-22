@@ -1,19 +1,54 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Quem é esse Pokemon?
-    </ion-title>
+    <ion-title>Batalha Pokémon</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>Bem-vindo ao jogo!</ion-card-title>
-      </ion-card-header>
-  
-      <ion-card-content>
-        Tente adivinhar quem é o Pokemon escondido!
-      </ion-card-content>
-    </ion-card>
+<ion-content [fullscreen]="true" class="battle-container">
+  <div class="battle-arena">
+    <!-- Pokémon Esquerda (Jogador) -->
+    <div class="pokemon-side esquerda" *ngIf="pokemonEsquerda">
+      <div class="pokemon-card">
+        <div class="pokemon-image">
+          <img [src]="pokemonEsquerda.sprites.other['official-artwork'].front_default" 
+               [alt]="pokemonEsquerda.name"
+               class="pokemon-img">
+        </div>
+        <div class="pokemon-info">
+          <h2 class="pokemon-name">{{ pokemonEsquerda.name | uppercase }}</h2>
+          <p class="pokemon-stat"><strong>Poder:</strong> {{ pokemonEsquerda.stats[1].base_stat }}</p>
+          <p class="pokemon-stat"><strong>Defesa:</strong> {{ pokemonEsquerda.stats[2].base_stat }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- VS no Meio -->
+    <div class="versus">
+      <span>VS</span>
+    </div>
+
+    <!-- Pokémon Direita (Oponente) -->
+    <div class="pokemon-side direita" *ngIf="pokemonDireita">
+      <div class="pokemon-card">
+        <div class="pokemon-image">
+          <img [src]="pokemonDireita.sprites.other['official-artwork'].front_default" 
+               [alt]="pokemonDireita.name"
+               class="pokemon-img">
+        </div>
+        <div class="pokemon-info">
+          <h2 class="pokemon-name">{{ pokemonDireita.name | uppercase }}</h2>
+          <p class="pokemon-stat"><strong>Poder:</strong> {{ pokemonDireita.stats[1].base_stat }}</p>
+          <p class="pokemon-stat"><strong>Defesa:</strong> {{ pokemonDireita.stats[2].base_stat }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botão para Gerar Nova Batalha -->
+  <div class="button-container">
+    <ion-button expand="block" color="danger" (click)="gerarBatalha()" [disabled]="carregando">
+      {{ carregando ? 'Carregando...' : 'Gerar Novo Pokémon' }}
+    </ion-button>
+  </div>
 </ion-content>
+
