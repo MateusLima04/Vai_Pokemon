@@ -1,13 +1,16 @@
 .battle-container {
-  --background: linear-gradient(135deg, #4CAF50 0%, #45a049 50%, #3d8b40 100%);
+ background-image: url('../../assets/images/grama.png');
   --padding-top: 0;
   --padding-bottom: 0;
   --padding-start: 0;
   --padding-end: 0;
 
-  background: linear-gradient(135deg, #7CFC00 0%, #32CD32 50%, #228B22 100%);
+  background-image: url('../../assets/images/grama.png');
   background-attachment: fixed;
   background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-blend-mode: multiply;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -33,6 +36,7 @@
 }
 
 .battle-arena {
+  margin-top:150px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -125,6 +129,7 @@
 
 .button-container {
   padding: 30px 20px;
+  width: 30%;
   position: relative;
   z-index: 1;
 
