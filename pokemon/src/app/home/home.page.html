@@ -21,7 +21,6 @@
         </div>
       </div>
     </div>
-
     <!-- VS no Meio -->
     <div class="versus">
       <span>VS</span>
@@ -44,10 +43,28 @@
     </div>
   </div>
 
+  <!-- Resultado da Batalha -->
+  <div class="resultado" *ngIf="ganhador">
+    <div [ngClass]="'resultado-' + ganhador">
+      <div *ngIf="ganhador === 'esquerda'" class="vencedor">
+        <span class="troféu">🏆</span>
+        <p>{{ pokemonEsquerda.name | uppercase }} VENCEU!</p>
+      </div>
+      <div *ngIf="ganhador === 'direita'" class="vencedor">
+        <span class="troféu">🏆</span>
+        <p>{{ pokemonDireita.name | uppercase }} VENCEU!</p>
+      </div>
+      <div *ngIf="ganhador === 'empate'" class="vencedor">
+        <span class="troféu">🤝</span>
+        <p>EMPATE! FORÇA IGUAL!</p>
+      </div>
+    </div>
+  </div>
+
   <!-- Botão para Gerar Nova Batalha -->
   <div class="button-container">
-    <ion-button expand="block" color="danger" (click)="gerarBatalha()" [disabled]="carregando">
-      {{ carregando ? 'Carregando...' : 'Gerar Novo Pokémon' }}
+    <ion-button expand="block" color="success" (click)="gerarBatalha()" [disabled]="carregando" class="battle-button">
+      {{ carregando ? 'Carregando...' : 'Gerar Nova Batalha' }}
     </ion-button>
   </div>
 </ion-content>
