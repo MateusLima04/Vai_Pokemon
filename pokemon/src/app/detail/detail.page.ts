@@ -23,6 +23,7 @@ export class DetailPage implements OnInit {
     private pokemonService: PokemonService
   ) {}
 
+  // Carrega os parâmetros da URL e busca o Pokémon correspondente quando a página é inicializada
   ngOnInit() {
     this.route.params.subscribe((params) => {
       if (params['id']) {
@@ -31,6 +32,7 @@ export class DetailPage implements OnInit {
     });
   }
 
+  // Busca os detalhes de um Pokémon específico pela ID na API e armazena no componente
   carregarPokemon(id: string) {
     this.carregando = true;
     this.erro = null;
@@ -48,10 +50,12 @@ export class DetailPage implements OnInit {
     );
   }
 
+  // Navega de volta para a página inicial
   voltarParaHome() {
     this.router.navigate(['/home']);
   }
 
+  // Retorna a lista de movimentos do Pokémon ou um array vazio se não houver dados
   get moves(): any[] {
     return this.pokemon?.moves || [];
   }

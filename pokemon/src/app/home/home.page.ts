@@ -20,10 +20,12 @@ export class HomePage implements OnInit {
 
   constructor(private pokemonService: PokemonService) {}
 
+  // Gera uma nova batalha quando a página é inicializada
   ngOnInit() {
     this.gerarBatalha();
   }
 
+  // Busca dois Pokémons aleatórios para realizar uma batalha
   gerarBatalha() {
     this.carregando = true;
     this.ganhador = null;
@@ -51,6 +53,7 @@ export class HomePage implements OnInit {
     );
   }
 
+  // Compara os stats de ataque e defesa dos dois Pokémons para determinar o vencedor
   calcularGanhador() {
     if (!this.pokemonEsquerda || !this.pokemonDireita) return;
 

@@ -10,11 +10,13 @@ export class PokemonService {
 
   constructor(private http: HttpClient) {}
 
+  // Busca um Pokémon aleatório da API (de ID 1 a 151)
   getPokemonAleatorio(): Observable<any> {
     const id = Math.floor(Math.random() * 151) + 1; // Pokémon de 1 a 151
     return this.http.get(`${this.apiUrl}/pokemon/${id}`);
   }
 
+  // Busca os detalhes de um Pokémon específico pela sua ID na API
   getPokemonPorId(id: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/pokemon/${id}`);
   }

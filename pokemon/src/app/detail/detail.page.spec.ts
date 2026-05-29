@@ -5,6 +5,7 @@ describe('DetailPage', () => {
   let component: DetailPage;
   let fixture: ComponentFixture<DetailPage>;
 
+  // Configura o ambiente de testes antes de cada teste
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [DetailPage],
@@ -15,6 +16,7 @@ describe('DetailPage', () => {
     fixture.detectChanges();
   });
 
+  // Verifica se o componente DetailPage é criado corretamente
   it('should create', () => {
     expect(component).toBeTruthy();
   });

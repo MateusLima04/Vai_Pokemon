@@ -3,6 +3,7 @@ import { provideRouter } from '@angular/router';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
+  // Verifica se o componente da aplicação é criado corretamente
   it('should create the app', async () => {
     await TestBed.configureTestingModule({
       imports: [AppComponent],
