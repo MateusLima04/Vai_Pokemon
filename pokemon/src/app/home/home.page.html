@@ -6,70 +6,91 @@
 
 <ion-content [fullscreen]="true" class="battle-container">
   <div class="battle-arena">
-    <!-- Pokémon Esquerda (Jogador) -->
-    <div class="pokemon-side esquerda" *ngIf="pokemonEsquerda">
-      <div class="pokemon-card" [routerLink]="['/detail', pokemonEsquerda.id]">
-        <div class="pokemon-image">
-          <img [src]="pokemonEsquerda.sprites.other['official-artwork'].front_default" 
-               [alt]="pokemonEsquerda.name"
-               class="pokemon-img">
-        </div>
-        <div class="pokemon-info">
-          <h2 class="pokemon-name">{{ pokemonEsquerda.name | capitalize }}</h2>
-          <div class="pokemon-types">
-            <span *ngFor="let type of pokemonEsquerda.types" class="type-badge">
-              {{ type.type.name | titlecase }}
-            </span>
+    <!-- Pokémon Esquerda (Jogador) - Usando @if ao invés de *ngIf para melhor performance -->
+    @if (pokemonEsquerda) {
+      <div class="pokemon-side esquerda">
+        <div class="pokemon-card" [routerLink]="['/detail', pokemonEsquerda.id]">
+          <div class="pokemon-image">
+            <img [src]="pokemonEsquerda.sprites.other['official-artwork'].front_default" 
+                 [alt]="pokemonEsquerda.name"
+                 class="pokemon-img">
           </div>
-          <p class="pokemon-stat"><strong>Poder:</strong> {{ pokemonEsquerda.stats[1].base_stat }}</p>
-          <p class="pokemon-stat"><strong>Defesa:</strong> {{ pokemonEsquerda.stats[2].base_stat }}</p>
+          <div class="pokemon-info">
+            <h2 class="pokemon-name">{{ pokemonEsquerda.name | capitalize }}</h2>
+            <div class="pokemon-types">
+              <!-- Tipos do Pokémon - Usando @for ao invés de *ngFor com track -->
+              @for (let type of pokemonEsquerda.types; track type.type.name) {
+                <span class="type-badge">
+                  {{ type.type.name | titlecase }}
+                </span>
+              }
+            </div>
+            <p class="pokemon-stat"><strong>Poder:</strong> {{ pokemonEsquerda.stats[1].base_stat }}</p>
+            <p class="pokemon-stat"><strong>Defesa:</strong> {{ pokemonEsquerda.stats[2].base_stat }}</p>
+          </div>
         </div>
       </div>
-    </div>
+    }
     <!-- VS no Meio -->
     <div class="versus">
       <span>VS</span>
     </div>
 
-    <!-- Pokémon Direita (Oponente) -->
-    <div class="pokemon-side direita" *ngIf="pokemonDireita">
-      <div class="pokemon-card" [routerLink]="['/detail', pokemonDireita.id]">
-        <div class="pokemon-image">
-          <img [src]="pokemonDireita.sprites.other['official-artwork'].front_default" 
-               [alt]="pokemonDireita.name"
-               class="pokemon-img">
-        </div>
-        <div class="pokemon-info">
-          <h2 class="pokemon-name">{{ pokemonDireita.name | capitalize }}</h2>
-          <div class="pokemon-types">
-            <span *ngFor="let type of pokemonDireita.types" class="type-badge">
-              {{ type.type.name | titlecase }}
-            </span>
+    <!-- Pokémon Direita (Oponente) - Usando @if ao invés de *ngIf para melhor performance -->
+    @if (pokemonDireita) {
+      <div class="pokemon-side direita">
+        <div class="pokemon-card" [routerLink]="['/detail', pokemonDireita.id]">
+          <div class="pokemon-image">
+            <img [src]="pokemonDireita.sprites.other['official-artwork'].front_default" 
+                 [alt]="pokemonDireita.name"
+                 class="pokemon-img">
           </div>
-          <p class="pokemon-stat"><strong>Poder:</strong> {{ pokemonDireita.stats[1].base_stat }}</p>
-          <p class="pokemon-stat"><strong>Defesa:</strong> {{ pokemonDireita.stats[2].base_stat }}</p>
+          <div class="pokemon-info">
+            <h2 class="pokemon-name">{{ pokemonDireita.name | capitalize }}</h2>
+            <div class="pokemon-types">
+              <!-- Tipos do Pokémon - Usando @for ao invés de *ngFor com track -->
+              @for (let type of pokemonDireita.types; track type.type.name) {
+                <span class="type-badge">
+                  {{ type.type.name | titlecase }}
+                </span>
+              }
+            </div>
+            <p class="pokemon-stat"><strong>Poder:</strong> {{ pokemonDireita.stats[1].base_stat }}</p>
+            <p class="pokemon-stat"><strong>Defesa:</strong> {{ pokemonDireita.stats[2].base_stat }}</p>
+          </div>
         </div>
       </div>
-    </div>
+    }
   </div>
 
-  <!-- Resultado da Batalha -->
-  <div class="resultado" *ngIf="ganhador">
-    <div [ngClass]="'resultado-' + ganhador">
-      <div *ngIf="ganhador === 'esquerda'" class="vencedor">
-        <span class="troféu">🏆</span>
-        <p>{{ pokemonEsquerda.name | capitalize }} VENCEU!</p>
-      </div>
-      <div *ngIf="ganhador === 'direita'" class="vencedor">
-        <span class="troféu">🏆</span>
-        <p>{{ pokemonDireita.name | capitalize }} VENCEU!</p>
-      </div>
-      <div *ngIf="ganhador === 'empate'" class="vencedor">
-        <span class="troféu">🤝</span>
-        <p>EMPATE! FORÇA IGUAL!</p>
+  <!-- Resultado da Batalha - Usando @if ao invés de *ngIf para renderização condicional -->
+  @if (ganhador) {
+    <div class="resultado">
+      <div [ngClass]="'resultado-' + ganhador">
+        <!-- Resultado esquerda - Usando @if ao invés de *ngIf -->
+        @if (ganhador === 'esquerda') {
+          <div class="vencedor">
+            <span class="troféu">🏆</span>
+            <p>{{ pokemonEsquerda.name | capitalize }} VENCEU!</p>
+          </div>
+        }
+        <!-- Resultado direita - Usando @if ao invés de *ngIf -->
+        @if (ganhador === 'direita') {
+          <div class="vencedor">
+            <span class="troféu">🏆</span>
+            <p>{{ pokemonDireita.name | capitalize }} VENCEU!</p>
+          </div>
+        }
+        <!-- Resultado empate - Usando @if ao invés de *ngIf -->
+        @if (ganhador === 'empate') {
+          <div class="vencedor">
+            <span class="troféu">🤝</span>
+            <p>EMPATE! FORÇA IGUAL!</p>
+          </div>
+        }
       </div>
     </div>
-  </div>
+  }
 
   <!-- Botão para Gerar Nova Batalha -->
   <div class="button-container">

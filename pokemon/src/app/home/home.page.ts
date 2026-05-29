@@ -1,23 +1,33 @@
+// Importa decorador Component e interface OnInit do Angular
 import { Component, OnInit } from '@angular/core';
+// Importa CommonModule para usar diretivas comuns como *ngIf, *ngFor
 import { CommonModule } from '@angular/common';
+// Importa RouterLink para navegação entre componentes
 import { RouterLink } from '@angular/router';
+// Importa componentes de interface do Ionic para a página inicial
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton } from '@ionic/angular/standalone';
+// Importa o serviço de Pokémon para requisições de dados
 import { PokemonService } from '../services/pokemon.service';
+// Importa o pipe customizado para capitalizar texto
 import { CapitalizePipe } from '../pipes/capitalize.pipe';
+// Importa a diretiva customizada para destacar elementos
 import { HighlightDirective } from '../directives/highlight.directive';
 
+// Componente principal que exibe a página de batalha entre Pokémons
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   imports: [CommonModule, RouterLink, IonHeader, IonToolbar, IonTitle, IonContent, IonButton, CapitalizePipe, HighlightDirective],
 })
+// Define o componente HomePage com o template e estilos associados
 export class HomePage implements OnInit {
   pokemonEsquerda: any = null;
   pokemonDireita: any = null;
   carregando = false;
   ganhador: string | null = null;
 
+  // Inicializa o componente com o serviço de Pokémon
   constructor(private pokemonService: PokemonService) {}
 
   // Gera uma nova batalha quando a página é inicializada

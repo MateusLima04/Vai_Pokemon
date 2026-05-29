@@ -1,5 +1,7 @@
+// Importa decorador Pipe e interface PipeTransform do Angular para criar um pipe customizado
 import { Pipe, PipeTransform } from '@angular/core';
 
+// Pipe que converte a primeira letra de uma string em maiúscula e o resto em minúsculas
 @Pipe({
   name: 'capitalize',
   standalone: true

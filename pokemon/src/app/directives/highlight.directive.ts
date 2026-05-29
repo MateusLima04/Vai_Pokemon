@@ -1,9 +1,12 @@
+// Importa decorador Directive, ElementRef para acessar o elemento DOM, HostListener para eventos e Input para receber dados
 import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 
+// Diretiva que aplica efeitos visuais de destaque a um elemento
 @Directive({
   selector: '[appHighlight]',
   standalone: true
 })
+// Define a diretiva com o seletor appHighlight para ser usada nos templates
 export class HighlightDirective {
   @Input() appHighlight: string = '#ffff00'; // cor padrão: amarelo
 

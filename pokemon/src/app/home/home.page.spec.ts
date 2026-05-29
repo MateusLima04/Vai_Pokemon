@@ -1,8 +1,11 @@
 /// <reference types="jasmine" />
+// Importa ComponentFixture e TestBed para configurar e testar componentes
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+// Importa o componente HomePage a ser testado
 import { HomePage } from './home.page';
 
+// Suite de testes para o componente HomePage
 describe('HomePage', () => {
   let component: HomePage;
   let fixture: ComponentFixture<HomePage>;

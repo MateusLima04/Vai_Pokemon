@@ -1,5 +1,7 @@
+// Importa o pipe CapitalizePipe a ser testado
 import { CapitalizePipe } from './capitalize.pipe';
 
+// Suite de testes para o pipe CapitalizePipe
 describe('CapitalizePipe', () => {
   // Verifica se a instância do pipe é criada corretamente
   it('should create an instance', () => {
