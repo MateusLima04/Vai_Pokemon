@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { ElementRef } from '@angular/core';
 import { HighlightDirective } from './highlight.directive';
 
 describe('HighlightDirective', () => {
@@ -10,7 +11,7 @@ describe('HighlightDirective', () => {
     });
 
     const el = document.createElement('div');
-    directive = new HighlightDirective(el);
+    directive = new HighlightDirective(new ElementRef(el));
   });
 
   it('should create an instance', () => {
