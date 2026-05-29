@@ -1,0 +1,93 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalhes do Pokémon</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="detail-container">
+  <!-- Carregando -->
+  <div *ngIf="carregando" class="loading">
+    <p>Carregando...</p>
+  </div>
+
+  <!-- Erro -->
+  <div *ngIf="erro" class="erro">
+    <p>{{ erro }}</p>
+    <ion-button (click)="voltarParaHome()">Voltar</ion-button>
+  </div>
+
+  <!-- Detalhes do Pokémon -->
+  <div *ngIf="pokemon && !carregando" class="pokemon-detail" appHighlight="#e8f5e9">
+    <!-- Nome -->
+    <div class="detail-header">
+      <h1 class="pokemon-name">{{ pokemon.name | capitalize }}</h1>
+      <p class="pokemon-id">ID: #{{ pokemon.id }}</p>
+    </div>
+
+    <!-- Imagem -->
+    <div class="pokemon-image-container">
+      <img 
+        [src]="pokemon.sprites.other['official-artwork'].front_default" 
+        [alt]="pokemon.name"
+        class="pokemon-image"
+        appHighlight="#fff3e0">
+    </div>
+
+    <!-- Tipos -->
+    <div class="types-section">
+      <h2>Tipos</h2>
+      <div class="types-list">
+        <div *ngFor="let type of pokemon.types" class="type-badge" [ngClass]="'type-' + type.type.name">
+          {{ type.type.name | titlecase }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-section">
+      <h2>Estatísticas</h2>
+      <div class="stats-list">
+        <div *ngFor="let stat of pokemon.stats" class="stat-item">
+          <span class="stat-name">{{ stat.stat.name | titlecase }}</span>
+          <div class="stat-bar">
+            <div class="stat-value" [style.width.%]="(stat.base_stat / 255) * 100">
+              {{ stat.base_stat }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Movimentos -->
+    <div class="moves-section">
+      <h2>Alguns Movimentos</h2>
+      <div class="moves-list">
+        <div *ngFor="let move of (moves | slice:0:10)" class="move-item">
+          {{ move.move?.name | titlecase }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Altura e Peso -->
+    <div class="physical-section">
+      <div class="physical-item">
+        <span class="label">Altura:</span>
+        <span class="value">{{ pokemon.height / 10 }} m</span>
+      </div>
+      <div class="physical-item">
+        <span class="label">Peso:</span>
+        <span class="value">{{ pokemon.weight / 10 }} kg</span>
+      </div>
+    </div>
+
+    <!-- Botão Voltar -->
+    <div class="button-container">
+      <ion-button expand="block" color="primary" (click)="voltarParaHome()">
+        Voltar para Home
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

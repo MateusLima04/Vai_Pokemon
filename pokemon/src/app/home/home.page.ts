@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton } from '@ionic/angular/standalone';
 import { PokemonService } from '../services/pokemon.service';
+import { CapitalizePipe } from '../pipes/capitalize.pipe';
+import { HighlightDirective } from '../directives/highlight.directive';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [CommonModule, IonHeader, IonToolbar, IonTitle, IonContent, IonButton],
+  imports: [CommonModule, RouterLink, IonHeader, IonToolbar, IonTitle, IonContent, IonButton, CapitalizePipe, HighlightDirective],
 })
 export class HomePage implements OnInit {
   pokemonEsquerda: any = null;

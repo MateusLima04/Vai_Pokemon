@@ -7,15 +7,20 @@
 <ion-content [fullscreen]="true" class="battle-container">
   <div class="battle-arena">
     <!-- Pokémon Esquerda (Jogador) -->
-    <div class="pokemon-side esquerda" *ngIf="pokemonEsquerda">
-      <div class="pokemon-card">
+    <div class="pokemon-side esquerda" *ngIf="pokemonEsquerda" appHighlight="#e3f2fd">
+      <div class="pokemon-card" [routerLink]="['/detail', pokemonEsquerda.id]">
         <div class="pokemon-image">
           <img [src]="pokemonEsquerda.sprites.other['official-artwork'].front_default" 
                [alt]="pokemonEsquerda.name"
                class="pokemon-img">
         </div>
         <div class="pokemon-info">
-          <h2 class="pokemon-name">{{ pokemonEsquerda.name | uppercase }}</h2>
+          <h2 class="pokemon-name">{{ pokemonEsquerda.name | capitalize }}</h2>
+          <div class="pokemon-types">
+            <span *ngFor="let type of pokemonEsquerda.types" class="type-badge">
+              {{ type.type.name | titlecase }}
+            </span>
+          </div>
           <p class="pokemon-stat"><strong>Poder:</strong> {{ pokemonEsquerda.stats[1].base_stat }}</p>
           <p class="pokemon-stat"><strong>Defesa:</strong> {{ pokemonEsquerda.stats[2].base_stat }}</p>
         </div>
@@ -27,15 +32,20 @@
     </div>
 
     <!-- Pokémon Direita (Oponente) -->
-    <div class="pokemon-side direita" *ngIf="pokemonDireita">
-      <div class="pokemon-card">
+    <div class="pokemon-side direita" *ngIf="pokemonDireita" appHighlight="#fff3e0">
+      <div class="pokemon-card" [routerLink]="['/detail', pokemonDireita.id]">
         <div class="pokemon-image">
           <img [src]="pokemonDireita.sprites.other['official-artwork'].front_default" 
                [alt]="pokemonDireita.name"
                class="pokemon-img">
         </div>
         <div class="pokemon-info">
-          <h2 class="pokemon-name">{{ pokemonDireita.name | uppercase }}</h2>
+          <h2 class="pokemon-name">{{ pokemonDireita.name | capitalize }}</h2>
+          <div class="pokemon-types">
+            <span *ngFor="let type of pokemonDireita.types" class="type-badge">
+              {{ type.type.name | titlecase }}
+            </span>
+          </div>
           <p class="pokemon-stat"><strong>Poder:</strong> {{ pokemonDireita.stats[1].base_stat }}</p>
           <p class="pokemon-stat"><strong>Defesa:</strong> {{ pokemonDireita.stats[2].base_stat }}</p>
         </div>
@@ -48,11 +58,11 @@
     <div [ngClass]="'resultado-' + ganhador">
       <div *ngIf="ganhador === 'esquerda'" class="vencedor">
         <span class="troféu">🏆</span>
-        <p>{{ pokemonEsquerda.name | uppercase }} VENCEU!</p>
+        <p>{{ pokemonEsquerda.name | capitalize }} VENCEU!</p>
       </div>
       <div *ngIf="ganhador === 'direita'" class="vencedor">
         <span class="troféu">🏆</span>
-        <p>{{ pokemonDireita.name | uppercase }} VENCEU!</p>
+        <p>{{ pokemonDireita.name | capitalize }} VENCEU!</p>
       </div>
       <div *ngIf="ganhador === 'empate'" class="vencedor">
         <span class="troféu">🤝</span>

@@ -396,3 +396,22 @@
     }
   }
 }
+
+// Estilos para tipos de Pokémon
+.pokemon-types {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  margin: 10px 0;
+
+  .type-badge {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+}

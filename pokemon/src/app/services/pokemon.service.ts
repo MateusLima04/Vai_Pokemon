@@ -14,4 +14,8 @@ export class PokemonService {
     const id = Math.floor(Math.random() * 151) + 1; // Pokémon de 1 a 151
     return this.http.get(`${this.apiUrl}/pokemon/${id}`);
   }
+
+  getPokemonPorId(id: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/pokemon/${id}`);
+  }
 }
