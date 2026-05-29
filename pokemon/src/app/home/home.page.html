@@ -7,7 +7,7 @@
 <ion-content [fullscreen]="true" class="battle-container">
   <div class="battle-arena">
     <!-- Pokémon Esquerda (Jogador) -->
-    <div class="pokemon-side esquerda" *ngIf="pokemonEsquerda" appHighlight="#e3f2fd">
+    <div class="pokemon-side esquerda" *ngIf="pokemonEsquerda">
       <div class="pokemon-card" [routerLink]="['/detail', pokemonEsquerda.id]">
         <div class="pokemon-image">
           <img [src]="pokemonEsquerda.sprites.other['official-artwork'].front_default" 
@@ -32,7 +32,7 @@
     </div>
 
     <!-- Pokémon Direita (Oponente) -->
-    <div class="pokemon-side direita" *ngIf="pokemonDireita" appHighlight="#fff3e0">
+    <div class="pokemon-side direita" *ngIf="pokemonDireita">
       <div class="pokemon-card" [routerLink]="['/detail', pokemonDireita.id]">
         <div class="pokemon-image">
           <img [src]="pokemonDireita.sprites.other['official-artwork'].front_default" 
