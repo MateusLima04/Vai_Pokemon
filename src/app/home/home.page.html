@@ -19,7 +19,7 @@
             <h2 class="pokemon-name">{{ pokemonEsquerda.name | capitalize }}</h2>
             <div class="pokemon-types">
               <!-- Tipos do Pokémon - Usando @for ao invés de *ngFor com track -->
-              @for (let type of pokemonEsquerda.types; track type.type.name) {
+              @for (type of pokemonEsquerda.types; track type.type.name) {
                 <span class="type-badge">
                   {{ type.type.name | titlecase }}
                 </span>
@@ -31,6 +31,7 @@
         </div>
       </div>
     }
+
     <!-- VS no Meio -->
     <div class="versus">
       <span>VS</span>
@@ -49,7 +50,7 @@
             <h2 class="pokemon-name">{{ pokemonDireita.name | capitalize }}</h2>
             <div class="pokemon-types">
               <!-- Tipos do Pokémon - Usando @for ao invés de *ngFor com track -->
-              @for (let type of pokemonDireita.types; track type.type.name) {
+              @for (type of pokemonDireita.types; track type.type.name) {
                 <span class="type-badge">
                   {{ type.type.name | titlecase }}
                 </span>
@@ -67,6 +68,7 @@
   @if (ganhador) {
     <div class="resultado">
       <div [ngClass]="'resultado-' + ganhador">
+
         <!-- Resultado esquerda - Usando @if ao invés de *ngIf -->
         @if (ganhador === 'esquerda') {
           <div class="vencedor">
@@ -74,6 +76,7 @@
             <p>{{ pokemonEsquerda.name | capitalize }} VENCEU!</p>
           </div>
         }
+
         <!-- Resultado direita - Usando @if ao invés de *ngIf -->
         @if (ganhador === 'direita') {
           <div class="vencedor">
@@ -81,6 +84,7 @@
             <p>{{ pokemonDireita.name | capitalize }} VENCEU!</p>
           </div>
         }
+
         <!-- Resultado empate - Usando @if ao invés de *ngIf -->
         @if (ganhador === 'empate') {
           <div class="vencedor">
@@ -88,6 +92,7 @@
             <p>EMPATE! FORÇA IGUAL!</p>
           </div>
         }
+
       </div>
     </div>
   }
@@ -99,4 +104,3 @@
     </ion-button>
   </div>
 </ion-content>
-
