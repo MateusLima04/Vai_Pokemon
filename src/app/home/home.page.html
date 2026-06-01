@@ -6,10 +6,11 @@
 
 <ion-content [fullscreen]="true" class="battle-container">
   <div class="battle-arena">
-    <!-- Pokémon Esquerda (Jogador) - Usando @if ao invés de *ngIf para melhor performance -->
+    <!-- Pokémon Esquerda (Jogador) - Usando diretiva estrutural @if ao invés de *ngIf para melhor performance  
+     e personalizada appHighlight="#f0f0f0"-->
     @if (pokemonEsquerda) {
       <div class="pokemon-side esquerda">
-        <div class="pokemon-card" [routerLink]="['/detail', pokemonEsquerda.id]">
+        <div class="pokemon-card" [routerLink]="['/detail', pokemonEsquerda.id]" appHighlight="#f0f0f0">
           <div class="pokemon-image">
             <img [src]="pokemonEsquerda.sprites.other['official-artwork'].front_default" 
                  [alt]="pokemonEsquerda.name"
@@ -40,7 +41,7 @@
     <!-- Pokémon Direita (Oponente) - Usando @if ao invés de *ngIf para melhor performance -->
     @if (pokemonDireita) {
       <div class="pokemon-side direita">
-        <div class="pokemon-card" [routerLink]="['/detail', pokemonDireita.id]">
+        <div class="pokemon-card" [routerLink]="['/detail', pokemonDireita.id]" appHighlight="#f0f0f0">
           <div class="pokemon-image">
             <img [src]="pokemonDireita.sprites.other['official-artwork'].front_default" 
                  [alt]="pokemonDireita.name"
